@@ -108,7 +108,7 @@
 				let nome = document.getElementById('nome').value || 'Nome';
 				let setor = document.getElementById('setor').value || 'Setor';
 				let telefone = document.getElementById('telefone').value || 'Telefone';
-				let ramal = document.getElementById('ramal').value || 'Ramal';
+				let ramal = document.getElementById('ramal').value.trim(); // Verifica se o campo Ramal não está vazio
 				let whatsapp = document.getElementById('whatsapp').value.trim(); // Verifica se o campo Whatsapp não está vazio
 
 				let conteudo = `
@@ -116,7 +116,7 @@
 						<td class="nome-container">
 							<span class="nome" style="font-weight: bold; font-size: 18px; color: #B0191A;">${nome}</span>
 							<span class="setor" style="font-weight: bold; font-size: 14px; color: #000000;">${setor}</span>
-							<span class="telefone" style="font-weight: bold; font-size: 13px; color: #000000;">${telefone} | Ramal ${ramal}</span>
+							<span class="telefone" style="font-weight: bold; font-size: 13px; color: #000000;">${telefone} ${ramal ? '| Ramal ' + ramal : ''}</span>
 							<span class="telefone" style="font-weight: bold; font-size: 13px; color: #000000;">${whatsapp ? whatsapp : '&nbsp;'}</span>
 						</td>
 					</tr>
