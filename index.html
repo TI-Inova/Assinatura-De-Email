@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Assinatura Digital Padrão Oficial</title>
+		<style> /*Lembre-se de seguir os padrões de cores de acordo com a identidade visual da Inova Sistemas Eletrônicos*/
+			body {
+				font-family: Arial, sans-serif;
+				width: 30vw;
+			}
+			table {
+				border-collapse: collapse;
+			}
+			td {
+				vertical-align: top;
+			}
+			a {
+				color: #3a22d2;
+				text-decoration: none;
+			}
+			table > tbody {
+				width: 325px;
+			}
+			.icon {
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 5px; /* Espaçamento entre os ícones */
+				width: 20px; /* Define um tamanho fixo para os ícones */
+				height: 20px; /* Define um tamanho fixo para os ícones */
+			}
+			.icon-container {
+				text-align: right; /* Alinha os ícones à direita */
+				white-space: nowrap; /* Evita que os ícones quebrem a linha */
+			}
+			.campo {
+				padding: 8px;
+				margin-bottom: 10px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+				width: calc(100% - 22px);
+			}
+			.botao {
+				background-color: #b0191a;
+				color: rgb(255, 255, 255);
+				border: none;
+				padding: 10px 20px;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.botao:hover {
+				background-color: darkred;
+			}
+
+			.nome-container {
+				width: 100%; /* Ajuste a largura para comportar o nome completo */
+				white-space: nowrap; /* Mantém tudo em uma linha */
+			}
+
+			/* Estilos para o nome */
+			.nome-container .nome {
+				margin-bottom: 0px; /* Espaçamento abaixo do nome */
+				display: block;
+			}
+
+			/* Estilos para o setor */
+			.nome-container .setor {
+				margin-bottom: 20px; /* Espaçamento abaixo do setor */
+				display: block;
+			}
+
+			/* Estilos para o telefone */
+			.nome-container .telefone {
+				margin-top: 10px; /* Espaçamento acima do telefone */
+				margin-bottom: 0px; /* Pequeno espaço abaixo do telefone */
+				display: block;
+			}
+
+			/* Estilos para o ramal */
+			.nome-container .ramal {
+				margin-top: 0px; /* Pequeno espaço acima do ramal */
+				display: block;
+				margin-bottom: 30px;
+			}
+
+			/* Estilos para o contêiner que inclui a URL e os ícones */
+			.link-container {
+				padding-top: 25px; /* Mantém um pequeno espaçamento acima da URL */
+				text-align: left; /* Mantém o link à esquerda */
+				max-width: 325px;
+				display: flex;
+				flex-wrap: nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Atualiza os Campos da Assinatura -->
+		<input type="text" id="nome" class="campo" placeholder="Seu Nome" /><br />
+		<input type="text" id="setor" class="campo" placeholder="Setor" /><br />
+		<input type="text" id="telefone" class="campo" placeholder="Telefone" /><br />
+		<input type="text" id="ramal" class="campo" placeholder="Ramal" /><br />
+		<input type="text" id="whatsapp" class="campo" placeholder="Whatsapp" /><br />
+		<button onclick="atualizarAssinatura()" class="botao">Atualizar Assinatura</button>
+
+		<script>
+			function atualizarAssinatura() {
+				let nome = document.getElementById('nome').value || 'Nome';
+				let setor = document.getElementById('setor').value || 'Setor';
+				let telefone = document.getElementById('telefone').value || 'Telefone';
+				let ramal = document.getElementById('ramal').value.trim(); // Verifica se o campo Ramal não está vazio
+				let whatsapp = document.getElementById('whatsapp').value.trim(); // Verifica se o campo Whatsapp não está vazio
+
+				let conteudo = `
+					<tr>
+						<td class="nome-container">
+							<span class="nome" style="font-weight: bold; font-size: 18px; color: #B0191A;">${nome}</span>
+							<span class="setor" style="font-weight: bold; font-size: 14px; color: #000000;">${setor}</span>
+							<span class="telefone" style="font-weight: bold; font-size: 13px; color: #000000;">${telefone} ${ramal ? '| Ramal ' + ramal : ''}</span>
+							<span class="telefone" style="font-weight: bold; font-size: 13px; color: #000000;">${whatsapp ? whatsapp : '&nbsp;'}</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="link-container">
+							<a href="https://www.inova.ind.br/" style="color: #000000; text-decoration: none; font-weight: bold; font-size: 15px">www.inova.ind.br</a>
+							<a href="https://www.facebook.com/sistemas.inova/?locale=pt_BR">
+								<img src="images/facebook.png" alt="Facebook" class="icon">
+							</a>
+							<a href="https://www.instagram.com/somos.inova/">
+								<img src="images/instagram.png" alt="Instagram" class="icon">
+							</a>
+							<a href="https://www.linkedin.com/company/sistemas-inova/mycompany/">
+								<img src="images/linkedin.png" alt="Linkedin" class="icon">
+							</a>
+						</td>
+					</tr>
+				`;
+				document.getElementById('info-icons-row').innerHTML = conteudo;
+			}
+		</script>
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="width: fit-content">
+					<img src="images/img_esquerda.png" alt="Logotipo Esquerda" class="logo" width="220px" />
+				</td>
+				<td>
+					<table cellspacing="0" cellpadding="0">
+						<tbody id="info-icons-row" style="width: 325px">
+							<!-- Dinamicamente inserido via JavaScript -->
+						</tbody>
+					</table>
+				</td>
+				<td> <!--https://github.com/TI-Inova/Assinatura-De-Email/main/mercopar_direita.png  //Usar esse caminho como base pra trocar as imagens-->
+					<img src="images/img_direita.png" alt="Logotipo Direita" class="logo" width="220px" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: justify; width: 766px;" >
+					<div class="lgpd" style="font-size: 10px; color: gray;">Este e-mail e quaisquer arquivos em anexos transmitidos, de uso exclusivo do destinatário pretendido, podem conter informações sigilosas, confidenciais, reservadas ou privilegiadas. Se você recebeu este e-mail e/ou qualquer arquivo anexo indevidamente, por favor, avise-nos imediatamente, eliminando-os em seguida de todos os seus bancos de dados. A utilização indevida desta mensagem e arquivos caracteriza desvio de finalidade terminantemente proibido, sendo vedadas suas reproduções, cópias, transmissões, encaminhamentos, disseminações, publicações, modificações ou quaisquer outros tipos de utilização sem a prévia e cabível autorização expressa, caso em que o remetente não assume responsabilidade. O desvio de finalidade implica ilícito e/ou uso abusivo, com previsões de garantia do direito do remetente e responsabilidades para o infrator previstas na legislação brasileira vigente, em especial na CF 5º XII e na LGPD 3º e 5º X</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
